@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "328137063325",
+    "project_id": "globalchat-cbd12",
+    "storage_bucket": "globalchat-cbd12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328137063325:android:b9d47da33bd988c3430d74",
+        "android_client_info": {
+          "package_name": "com.chatapps.globalchat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-ZOb0Jara82yxy-5o5UN5V7SjDgFRZmo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
