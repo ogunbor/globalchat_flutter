@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:globalchat/controllers/signup_controller.dart';
 import 'package:globalchat/screens/dashboard_screen.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -76,7 +77,10 @@ class _SignupScreenState extends State<SignupScreen> {
                   onPressed: () {
                     if (userForm.currentState!.validate()) {
                       //Create account
-                      createAccount();
+                      SignupController.createAccount(
+                          context: context,
+                          email: email.text,
+                          password: password.text);
                     }
                   },
                   child: Text('Create account'))
