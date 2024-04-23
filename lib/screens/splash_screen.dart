@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:globalchat/screens/dashboard_screen.dart';
 import 'package:globalchat/screens/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,10 +12,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  var user = FirebaseAuth.instance.currentUser;
+
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 5), () {
-      openLogin();
+    Future.delayed(Duration(seconds: 2), () {
+      if (user == null) {
+        openLogin();
+      } else {
+        openDashboard();
+      }
     });
     super.initState();
   }
