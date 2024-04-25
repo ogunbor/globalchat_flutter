@@ -19,25 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
-  Future<void> createAccount() async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: email.text, password: password.text);
-
-      Navigator.pushAndRemoveUntil(context,
-          MaterialPageRoute(builder: (context) {
-        return DashboardScreen();
-      }), (route) {
-        return false;
-      });
-    } catch (e) {
-      SnackBar messageSnackbar =
-          SnackBar(backgroundColor: Colors.red, content: Text(e.toString()));
-
-      ScaffoldMessenger.of(context).showSnackBar(messageSnackbar);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
