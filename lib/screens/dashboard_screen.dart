@@ -91,19 +91,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     });
                   },
                   leading: Icon(Icons.logout),
-                  title: Text("Profile"),
-                ),
-                ListTile(
-                  onTap: () async {
-                    await FirebaseAuth.instance.signOut();
-                    Navigator.pushAndRemoveUntil(context,
-                        MaterialPageRoute(builder: (context) {
-                      return SplashScreen();
-                    }), (route) {
-                      return false;
-                    });
-                  },
-                  leading: Icon(Icons.logout),
                   title: Text("Logout"),
                 ),
               ],
