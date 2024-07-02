@@ -55,7 +55,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: Padding(
               padding: const EdgeInsets.all(6.0),
               child: CircleAvatar(
-                  radius: 30, child: Text(userProvider.userName[0])),
+                  radius: 30,
+                  child: Text(userProvider.userName.isNotEmpty
+                      ? userProvider.userName[0]
+                      : '?')),
             ),
           ),
         ),
@@ -72,7 +75,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     }));
                   },
                   leading: CircleAvatar(
-                    child: Text(userProvider.userName[0]),
+                    child: Text(userProvider.userName.isNotEmpty
+                        ? userProvider.userName[0]
+                        : '?'),
                   ),
                   title: Text(
                     userProvider.userName,
@@ -97,29 +102,34 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ),
         ),
-        body: ListView.builder(
-            itemCount: chatroomsList.length,
-            itemBuilder: (BuildContext context, int index) {
-              String chatroomName = chatroomsList[index]["chatroom_name"] ?? "";
-              return ListTile(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ChatroomScreen(
-                      chatroomName: chatroomName,
-                      chatroomId: chatroomsIds[index],
-                    );
-                  }));
-                },
-                leading: CircleAvatar(
-                  backgroundColor: Colors.blueGrey[900],
-                  child: Text(chatroomName[0],
-                      style: TextStyle(color: Colors.white)),
-                ),
-                title: Text(chatroomName),
-                subtitle: Text(
-                  chatroomsList[index]["desc"] ?? "",
-                ),
-              );
-            }));
+        body: chatroomsList.isEmpty
+            ? Center(child: Text('No chatrooms available'))
+            : ListView.builder(
+                itemCount: chatroomsList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  String chatroomName =
+                      chatroomsList[index]["chatroom_name"] ?? "Unknown";
+                  return ListTile(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return ChatroomScreen(
+                          chatroomName: chatroomName,
+                          chatroomId: chatroomsIds[index],
+                        );
+                      }));
+                    },
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.blueGrey[900],
+                      child: Text(
+                          chatroomName.isNotEmpty ? chatroomName[0] : '?',
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                    title: Text(chatroomName),
+                    subtitle: Text(
+                      chatroomsList[index]["desc"] ?? "No description",
+                    ),
+                  );
+                }));
   }
 }
