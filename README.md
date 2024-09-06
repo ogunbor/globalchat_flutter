@@ -1,6 +1,5 @@
 # globalchat
-
-A new Flutter project.
+Created using firestore and dart
 
 ## Getting Started
 
